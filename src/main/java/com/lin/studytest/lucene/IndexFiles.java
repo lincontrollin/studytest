@@ -55,29 +55,29 @@ public class IndexFiles {
 
 	/** Index all text files under a directory. */
 	public static void main(String[] args) {
-		String usage = "java org.apache.lucene.demo.IndexFiles"
-				+ " [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
-				+ "This indexes the documents in DOCS_PATH, creating a Lucene index"
-				+ "in INDEX_PATH that can be searched with SearchFiles";
-		String indexPath = "index";
-		String docsPath = null;
-		boolean create = true;
-		for(int i=0;i<args.length;i++) {
-			if ("-index".equals(args[i])) {
-				indexPath = args[i+1];
-				i++;
-			} else if ("-docs".equals(args[i])) {
-				docsPath = args[i+1];
-				i++;
-			} else if ("-update".equals(args[i])) {
-				create = false;
-			}
-		}
+//		String usage = "java org.apache.lucene.demo.IndexFiles"
+//				+ " [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
+//				+ "This indexes the documents in DOCS_PATH, creating a Lucene index"
+//				+ "in INDEX_PATH that can be searched with SearchFiles";
+		String indexPath = "D:\\software\\lucene\\testdata\\indexpath";
+		String docsPath = "D:\\software\\lucene\\testdata\\docpath";
+		boolean create = false;
+//		for(int i=0;i<args.length;i++) {
+//			if ("-index".equals(args[i])) {
+//				indexPath = args[i+1];
+//				i++;
+//			} else if ("-docs".equals(args[i])) {
+//				docsPath = args[i+1];
+//				i++;
+//			} else if ("-update".equals(args[i])) {
+//				create = false;
+//			}
+//		}
 
-		if (docsPath == null) {
-			System.err.println("Usage: " + usage);
-			System.exit(1);
-		}
+//		if (docsPath == null) {
+//			System.err.println("Usage: " + usage);
+//			System.exit(1);
+//		}
 
 		final Path docDir = Paths.get(docsPath);
 		if (!Files.isReadable(docDir)) {
