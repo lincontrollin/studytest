@@ -57,7 +57,7 @@ public class SearchFiles {
     
     int repeat = 100;
     boolean raw = false;
-    String queryString = "ja";
+    String queryString = "我是功能";
     int hitsPerPage = 10;
     
 //    for(int i = 0;i < args.length;i++) {
@@ -150,7 +150,7 @@ public class SearchFiles {
                                      int hitsPerPage, boolean raw, boolean interactive) throws IOException {
  
     // Collect enough docs to show 5 pages
-    TopDocs results = searcher.search(query, 5);
+    TopDocs results = searcher.search(query, 5*hitsPerPage);
     ScoreDoc[] hits = results.scoreDocs;
     
     int numTotalHits = results.totalHits;

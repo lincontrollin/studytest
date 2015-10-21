@@ -31,7 +31,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.LongField;
@@ -43,6 +43,9 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /** Index all text files under a directory.
  * <p>
@@ -61,6 +64,8 @@ public class IndexFiles {
 //				+ "in INDEX_PATH that can be searched with SearchFiles";
 		String indexPath = "D:\\software\\lucene\\testdata\\indexpath";
 		String docsPath = "D:\\software\\lucene\\testdata\\docpath";
+		RAMDirectory ramDirectory = new RAMDirectory();
+		
 		boolean create = false;
 //		for(int i=0;i<args.length;i++) {
 //			if ("-index".equals(args[i])) {
@@ -90,7 +95,7 @@ public class IndexFiles {
 			System.out.println("Indexing to directory '" + indexPath + "'...");
 
 			Directory dir = FSDirectory.open(Paths.get(indexPath));
-			Analyzer analyzer = new StandardAnalyzer();
+			Analyzer analyzer = new SmartChineseAnalyzer();
 			IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
 			if (create) {
