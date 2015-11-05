@@ -106,7 +106,7 @@ public class IndexFiles {
 				// Add new documents to an existing index:
 				iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			}
-
+	
 			// Optional: for better indexing performance, if you
 			// are indexing many documents, increase the RAM
 			// buffer.  But if you do this, increase the max heap
@@ -149,7 +149,7 @@ public class IndexFiles {
 	 *  
 	 * @param writer Writer to the index where the given file/dir info will be stored
 	 * @param path The file to index, or the directory to recurse into to find files to index
-	 * @throws IOException If there is a low-level I/O error
+	 * @throws IOException If there is a low-level I/O error					
 	 */
 	static void indexDocs(final IndexWriter writer, Path path) throws IOException {
 		if (Files.isDirectory(path)) {
@@ -197,6 +197,7 @@ public class IndexFiles {
 			// Note that FileReader expects the file to be in UTF-8 encoding.
 			// If that's not the case searching for special characters will fail.
 			doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
+			
 
 			if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
 				// New index, so we just add the document (no old document can be there):
