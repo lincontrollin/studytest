@@ -1,5 +1,9 @@
 package com.lin.studytest;
 
+import org.ehcache.CacheManager;
+import org.ehcache.CacheManagerBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.NumberUtils;
 
 
@@ -12,12 +16,11 @@ public class App
 {
     public static void main( String[] args )
     {
-		org.apache.log4j.Logger logger2 = org.apache.log4j.Logger.getLogger(App.class);
-		
-		try{
-			NumberUtils.parseNumber("121.344", Integer.class);
-		}catch(Exception e){
-			logger2.error("error", e);
-		}
+//		CacheManager cacheManager = CacheManagerBuilder.newCacheManager();
+    	String url="hello";
+    	long startTime = System.nanoTime();
+    	url="888";
+    	long time = System.nanoTime() - startTime;
+    	System.out.println(time);
     }
 }
