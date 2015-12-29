@@ -11,4 +11,20 @@
            <ref bean="food"/>
         </property>
 	</bean>
+	<bean id="myAdvice" class="com.lin.studytest.spring.aop.aopjdk.MyAdvice">
+	</bean>
+	<bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="interceptorNames">
+			<list>
+				<value>myAdvice</value>
+			</list>
+		</property>
+		<property name="target">
+			<ref bean="chiness"/>
+		</property>
+		<property name="proxyInterfaces">
+			<value>com.lin.studytest.spring.human.Human</value>
+		</property>
+	</bean>
+	
 </beans>
