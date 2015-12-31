@@ -19,9 +19,9 @@ public class ProxyGeneratorUtils {
         } catch (Exception e) {  
             e.printStackTrace();  
         } finally {  
-            try {  
+            try {
                 out.close();  
-            } catch (IOException e) {  
+            } catch (IOException e) {
                 e.printStackTrace();  
             }  
         }  
