@@ -1,6 +1,11 @@
 package com.lin.studytest.spring.aop.cglib;
-import net.sf.cglib.proxy.*;
-import java.util.*;
+import java.util.List;
+import java.util.Vector;
+
+import net.sf.cglib.core.DebuggingClassWriter;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
 /**
  *
  * @author  baliuka
@@ -30,6 +35,7 @@ public class Trace implements MethodInterceptor {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "C:/Users/Administrator/Desktop/cglib/");;
         List list = (List)newInstance(Vector.class);
         Object value = "TEST";
         list.add(value);
