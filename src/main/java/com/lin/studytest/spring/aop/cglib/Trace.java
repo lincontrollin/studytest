@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Vector;
 
 import net.sf.cglib.core.DebuggingClassWriter;
+import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -23,7 +24,9 @@ public class Trace implements MethodInterceptor {
       try{
             Enhancer e = new Enhancer();
             e.setSuperclass(clazz);
-            e.setCallback(callback);
+            e.setCallbacks(new Callback[]{ callback,new TraceAdapter() });
+//            e.setCallbacks(new Callback[]{ callback });
+            e.setCallbackFilter(new TraceFilter());
             return e.create();
       }catch( Throwable e ){
          e.printStackTrace(); 
@@ -37,9 +40,9 @@ public class Trace implements MethodInterceptor {
     public static void main(String[] args) {
         System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "C:/Users/Administrator/Desktop/cglib/");;
         List list = (List)newInstance(Vector.class);
+        
         Object value = "TEST";
         list.add(value);
-        list.contains(value);
         try{
          list.set(2, "ArrayIndexOutOfBounds" );
         }catch( ArrayIndexOutOfBoundsException ignore ){
@@ -100,8 +103,6 @@ public class Trace implements MethodInterceptor {
     }
     
    void printIdent( int ident ){
-       
-    
        while( --ident > 0 ){
          System.out.print(".......");
        }
