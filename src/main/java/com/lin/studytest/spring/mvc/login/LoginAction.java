@@ -12,13 +12,11 @@ public class LoginAction {
 	 * @param userName
 	 * @param password
 	 */
-	@RequestMapping("login2")
+	@RequestMapping("login2.htm")
 	public void login(String userName,String password){
 		if(userName.equals("linwanqi")){
 			return;
 		}
-		
-		
 	}
 
 }

@@ -7,7 +7,7 @@ import java.beans.*;
  */
 public abstract class Bean implements java.io.Serializable{
    
-    String sampleProperty;
+  String sampleProperty;
     
   abstract public void addPropertyChangeListener(PropertyChangeListener listener); 
    
