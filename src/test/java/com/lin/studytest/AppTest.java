@@ -1,38 +1,33 @@
 package com.lin.studytest;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.freebencher.FbJobResult;
+import org.freebencher.FbTarget;
+import org.freebencher.Freebencher;
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
-    extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
+    
+    @Test
     public void testApp()
     {
-        assertTrue( true );
+    	final List<String> userList = new ArrayList<String>();
+    	final Integer i = 0;
+    	FbJobResult result = Freebencher.benchmark(new FbTarget() {
+    		@Override
+    		public boolean invoke() {
+    			userList.add(i.toString());
+    			return true;
+    		}
+    	}, 10, // concurrency,
+    	1000 // number of tests to run
+    			);
+    	System.out.println(result.report());
     }
 }
