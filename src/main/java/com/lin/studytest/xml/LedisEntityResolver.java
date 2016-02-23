@@ -13,6 +13,7 @@ public class LedisEntityResolver implements EntityResolver {
 		if (systemId != null) {
 			try {
 				InputStream is = this.getClass().getResourceAsStream("/com/lin/studytest/xml/spring-beans.xsd");
+//				readis(is);
 				InputSource source = new InputSource(is);
 				source.setPublicId(publicId);
 				source.setSystemId(systemId);
@@ -21,5 +22,15 @@ public class LedisEntityResolver implements EntityResolver {
 			}
 		}
 		return null;
+	}
+	
+	public void readis(InputStream is)throws Exception{
+		byte[] bytes = new byte[1024];               
+		StringBuilder sb = new StringBuilder();      
+		while(is.read(bytes)!=-1){                   
+			sb.append(new String(bytes));            
+			bytes = new byte[1024];                  
+		}                                            
+		System.out.println(sb.toString());           
 	}
 }

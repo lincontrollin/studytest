@@ -18,4 +18,18 @@
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	<bean id="myAdvice" class="com.lin.studytest.spring.aop.aopjdk.MyAdvice"></bean>
+	<bean id="myAop" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.lin.studytest.spring.human.Human</value>
+		</property>
+		<property name="target">
+			<value>com.lin.studytest.spring.human.Chiness</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>myAdvice</value>
+			</list>
+		</property>
+	</bean>
 </beans>

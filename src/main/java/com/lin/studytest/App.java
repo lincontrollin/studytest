@@ -1,26 +1,15 @@
 package com.lin.studytest;
 
-import org.ehcache.CacheManager;
-import org.ehcache.CacheManagerBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.NumberUtils;
+import com.lin.studytest.spring.human.Chiness;
 
 
-
-/**
- * Hello world!
- *
- */
 public class App 
 {
+	public static volatile int a = 1;
     public static void main( String[] args )
     {
-//		CacheManager cacheManager = CacheManagerBuilder.newCacheManager();
-    	String url="hello";
-    	long startTime = System.nanoTime();
-    	url="888";
-    	long time = System.nanoTime() - startTime;
-    	System.out.println(time);
+    	Chiness man = new Chiness();
+    	a++ ;
+    	Thread.interrupted();
     }
 }

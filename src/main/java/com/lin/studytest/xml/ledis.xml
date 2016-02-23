@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ledis xmlns="http://www.example.org/ledis"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/ledis ledis2.xsd">
+	xsi:schemaLocation="http://www.example.org/ledis ledis3.xsd">
 	<redis>
 		<host>127.0.0.1</host>
 		<port>6379</port>

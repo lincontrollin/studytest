@@ -1,4 +1,5 @@
 package com.lin.studytest.spring.aop.cglib;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -40,8 +41,9 @@ public class Trace implements MethodInterceptor {
     public static void main(String[] args) {
         System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "C:/Users/Administrator/Desktop/cglib/");;
         List list = (List)newInstance(Vector.class);
+        System.out.println(Arrays.toString(list.getClass().getInterfaces()));
         
-        Object value = "TEST";
+       /* Object value = "TEST";
         list.add(value);
         try{
          list.set(2, "ArrayIndexOutOfBounds" );
@@ -60,7 +62,7 @@ public class Trace implements MethodInterceptor {
        list.remove(list);
        list.remove("");
        list.containsAll(list);
-       list.lastIndexOf(value);
+       list.lastIndexOf(value);*/
     }
 
 

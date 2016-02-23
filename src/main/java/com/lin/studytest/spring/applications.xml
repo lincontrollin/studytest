@@ -23,7 +23,14 @@
 			<ref bean="chiness"/>
 		</property>
 		<property name="proxyInterfaces">
-			<value>com.lin.studytest.spring.human.Human</value>
+			<list>
+				<value>com.lin.studytest.spring.food.Food</value>
+				<value>com.lin.studytest.spring.human.Human</value>
+			</list>
+		</property>
+		<!--是否最大优化 -->
+		<property name="optimize">
+			<value>true</value>
 		</property>
 	</bean>
 	

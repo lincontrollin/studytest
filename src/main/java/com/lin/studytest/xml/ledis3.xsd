@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.example.org/ledis" 
+	xmlns:tns="http://www.example.org/ledis" 
+	elementFormDefault="qualified">
+	<complexType name="sentinel-config">
+		<all>
+			<element name="host" type="string">
+			</element>
+			<element name="port" type="string">
+			</element>
+		</all>
+	</complexType>
+	<simpleType name="slaves-config">
+		<list itemType="string" />
+	</simpleType>
+	<element name="ledis">
+        <complexType>
+			<all>
+			<element name="redis">
+				<complexType>
+					<all minOccurs="0">
+						<element name="sentinel" type="sentinel-config" minOccurs="0" />
+						<element name="slaves" type="slaves-config" minOccurs="0" />
+						<element name="host" type="string" />
+						<element name="port" type="string" />
+					</all>
+				</complexType>
+			</element>
+			</all>
+		</complexType>
+    </element>
+</schema>
