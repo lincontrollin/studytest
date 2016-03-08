@@ -40,4 +40,10 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
+    
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+    	// TODO Auto-generated method stub
+    	super.channelRegistered(ctx);
+    }
 }

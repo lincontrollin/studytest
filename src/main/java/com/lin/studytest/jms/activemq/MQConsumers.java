@@ -31,7 +31,7 @@ public class MQConsumers {
 		try{
 			Queue destination = session.createQueue(MQConfigurations.QUEUE_NAME);
 			
-			MessageConsumer  consumer = session.createConsumer(destination);
+			MessageConsumer consumer = session.createConsumer(destination);
 			
 			while (true) {
                 // 接收数据的时间（等待） 100 s

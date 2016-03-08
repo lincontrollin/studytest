@@ -40,7 +40,6 @@ public class MQPusher {
 	
 	public void run()throws Exception{
 		try{
-			
 			Queue destination = session.createQueue(MQConfigurations.QUEUE_NAME);
 			MessageProducer  producer = session.createProducer(destination);
 			producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
