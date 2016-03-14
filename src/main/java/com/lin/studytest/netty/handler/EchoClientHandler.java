@@ -42,4 +42,11 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
+    
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
+    		throws Exception {
+    	// TODO Auto-generated method stub
+    	super.userEventTriggered(ctx, evt);
+    }
 }

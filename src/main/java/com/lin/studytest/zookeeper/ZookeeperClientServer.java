@@ -6,9 +6,9 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooDefs.Ids;
 
-public class ZooKeeperClient implements Runnable{
+public class ZookeeperClientServer {
 	
-	protected String host = "192.168.56.101:2181";
+protected String host = "192.168.56.101:2181";
 	
 	protected ZooKeeper zk ;
 	
@@ -27,14 +27,8 @@ public class ZooKeeperClient implements Runnable{
 		}
 	}
 	
-	public static void main(String[] args)throws Exception {
-		
-		Thread [] threads = new Thread[3];
-		for(int i=0;i<3;i++){
-			threads[i] = new Thread(new ZooKeeperClient());
-			threads[i].start();
-		}
-		Thread.sleep(3000);
+	public static void main(String[] args) throws Exception{
+		new ZookeeperClientServer().run();
 		Thread.sleep(1000000);
 	}
 
