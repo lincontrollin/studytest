@@ -29,7 +29,15 @@ public class AbstractElectionNode implements ElectionNode{
 	 */
 	protected ElectionStrategy electionStrategy = ElectionStrategy.DEFUALT_ELECTIONSTRATEGY;
 	
-	protected ZooKeeper zookeeper;
+	/**
+	 * zookeeper client
+	 */
+	protected ZooKeeper zooKeeper;
+	
+	public AbstractElectionNode(ZooKeeper zooKeeper) {
+		this.zooKeeper = zooKeeper;
+		
+	}
 	
 	
 	@Override
