@@ -10,6 +10,8 @@ public interface ElectionNode {
 	
 	String NODE_SPACE="/";
 	
+	static final byte[] EMPTY_BYTES = new byte[0];
+	
 	/**
 	 * 选举
 	 */

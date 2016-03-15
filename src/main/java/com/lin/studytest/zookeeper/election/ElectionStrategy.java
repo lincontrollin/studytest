@@ -1,5 +1,7 @@
 package com.lin.studytest.zookeeper.election;
 
+import org.apache.zookeeper.KeeperException;
+
 import com.lin.studytest.zookeeper.exception.EmptyChildrenException;
 
 public interface ElectionStrategy {
@@ -11,6 +13,7 @@ public interface ElectionStrategy {
 	 * @param node 当前节点
 	 * @return 节点名称
 	 */
-	boolean electAndResult(AbstractElectionNode node)throws EmptyChildrenException;
+	boolean electAndResult(AbstractElectionNode node)
+			throws EmptyChildrenException,InterruptedException,KeeperException;
 
 }

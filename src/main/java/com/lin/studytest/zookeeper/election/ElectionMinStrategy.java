@@ -3,6 +3,7 @@ package com.lin.studytest.zookeeper.election;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.zookeeper.KeeperException;
 
 import com.lin.studytest.zookeeper.exception.EmptyChildrenException;
 
@@ -15,17 +16,19 @@ import com.lin.studytest.zookeeper.exception.EmptyChildrenException;
 public class ElectionMinStrategy implements ElectionStrategy {
 	
 	@Override
-	public boolean electAndResult(AbstractElectionNode node) throws EmptyChildrenException{
-//		if(CollectionUtils.isEmpty(children)){
-//			throw new EmptyChildrenException();
-//		}
-//		int mySeqNum = 
-//		for(String child:children){
-//			if(child.equals(leader))
-//				continue;
-//			
-//		}
-		return false;
+	public boolean electAndResult(AbstractElectionNode node)
+			throws EmptyChildrenException,InterruptedException,KeeperException{
+		List<String> children = node.getChildren();
+		if(CollectionUtils.isEmpty(children)){
+			throw new EmptyChildrenException();
+		}
+		for(String child:children){
+			if(node.leaderNodeName!=null && child.equals(node.leaderNodeName))
+				continue;
+			if(ElectionUtil.fetchSeq(child)<node.seqNum)
+				return false;
+		}
+		return true;
 	}
 
 }

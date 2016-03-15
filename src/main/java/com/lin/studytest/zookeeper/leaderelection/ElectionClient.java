@@ -38,34 +38,36 @@ public class ElectionClient {
 				public void process(WatchedEvent event) {
 					System.out.println("event::::::::"+event);
 					if(event.getState().equals(KeeperState.SyncConnected)){
-						zk.create("/election/"+nodePre, "who".getBytes(), 
-							Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL,new StringCallback() {
-								@Override
-								public void processResult(int rc, String path, Object ctx, String name) {
-									System.out.println("create===>{code="+rc+",name="+name+",path="+path);
-									try{
-										switch (rc) {
-										case Code.Ok:
-											nodeName = name.substring((nodeParentName+"/").length()-1);
-											edw = new ElectionDelWatcher(_this);
-											break;
-										default:
-											break;
-										}
-									}catch(Exception e){
-										System.out.println(e);
-									}
-								}
-							},null);
+//						zk.create("/election/"+nodePre, "who".getBytes(), 
+//							Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL,new StringCallback() {
+//								@Override
+//								public void processResult(int rc, String path, Object ctx, String name) {
+//									System.out.println("create===>{code="+rc+",name="+name+",path="+path);
+//									try{
+//										switch (rc) {
+//										case Code.Ok:
+//											nodeName = name.substring((nodeParentName+"/").length()-1);
+//											edw = new ElectionDelWatcher(_this);
+//											break;
+//										default:
+//											break;
+//										}
+//									}catch(Exception e){
+//										System.out.println(e);
+//									}
+//								}
+//							},null);
 						
 					}
 				}
 			
 			});
+			String nodeName = zk.create("/election/"+nodePre, "who".getBytes(), 
+							Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+			System.out.println(nodeName);
 			
-//			zk.create("/election", "elect".getBytes(), 
-//					Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 		}catch(Exception e){
+			System.out.println(e);
 		}
 	}
 	
