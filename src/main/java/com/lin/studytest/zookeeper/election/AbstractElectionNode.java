@@ -78,6 +78,7 @@ public class AbstractElectionNode implements ElectionNode,Watcher{
 	 * 初始化
 	 * @throws Exception
 	 */
+	@SuppressWarnings("deprecation")
 	protected void init()throws Exception{
 		Stat stat = null;
 		if((stat=zooKeeper.exists(parentNodePath, false))!=null){
@@ -138,12 +139,12 @@ public class AbstractElectionNode implements ElectionNode,Watcher{
 	public void elect() {
 		try{
 			if(electionStrategy.electAndResult(this)){
-				zooKeeper.setData(parentNodePath, nodeName.getBytes(), version);//将父节点的数据设置成成功选举节点的名称
+//				zooKeeper.setData(parentNodePath, nodeName.getBytes(), version);//将父节点的数据设置成成功选举节点的名称
 				electLeader();
 			}
 			watchNode(this);
 		}catch(Exception e){
-			logger.info("elect error {}",e);
+			logger.info("elect error ",e);
 		}
 	}
 	

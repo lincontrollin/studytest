@@ -168,6 +168,7 @@
 			<groupId>org.apache.curator</groupId>
 			<artifactId>curator-recipes</artifactId>
 			<version>3.1.0</version>
+			
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>

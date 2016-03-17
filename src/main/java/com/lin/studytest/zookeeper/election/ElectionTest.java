@@ -23,7 +23,7 @@ public class ElectionTest {
 			@Override
 			public void process(WatchedEvent event) {
 				if(event.getState().equals(KeeperState.SyncConnected)){
-					AbstractElectionNode node = new AbstractElectionNode(zk, parantNodePath);
+					MyElectionNode node = new MyElectionNode(zk, parantNodePath);
 					try{
 						node.init();
 					}catch(Exception e){
