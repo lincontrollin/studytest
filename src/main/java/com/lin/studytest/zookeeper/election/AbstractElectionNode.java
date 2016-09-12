@@ -1,21 +1,17 @@
 package com.lin.studytest.zookeeper.election;
 
-import java.util.List;
-
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.zookeeper.AsyncCallback.StringCallback;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.*;
 import org.apache.zookeeper.KeeperException.Code;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.EventType;
 import org.apache.zookeeper.ZooDefs.Ids;
-import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class AbstractElectionNode implements ElectionNode,Watcher{
 	
@@ -86,7 +82,6 @@ public class AbstractElectionNode implements ElectionNode,Watcher{
 			final AbstractElectionNode ae = this;
 			zooKeeper.create(parentNodePath+NODE_SPACE+ELECTION_NODE_PRE,
 					EMPTY_BYTES, Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL,new StringCallback() {
-						@Override
 						public void processResult(int rc, String path, Object ctx, String name) {
 							try{
 								switch (rc) {
@@ -135,7 +130,7 @@ public class AbstractElectionNode implements ElectionNode,Watcher{
 		}
 	}
 	
-	@Override
+
 	public void elect() {
 		try{
 			if(electionStrategy.electAndResult(this)){
@@ -156,7 +151,6 @@ public class AbstractElectionNode implements ElectionNode,Watcher{
 	}
 	
 	
-	@Override
 	public void process(WatchedEvent event) {
 		logger.info("node event :{}",event);
 		if(event.getType().equals(EventType.NodeDeleted)){
